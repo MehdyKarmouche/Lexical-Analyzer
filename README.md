@@ -3,27 +3,30 @@ This is a lexical analyzer or a lexer of our language written in Python. The aim
 
 ## Implementation choices
 #### Python:
-We chose Python because most of the team memebers are used to write code in it. Moreover, Python offers the re module (regular expressions or RegEx) which is very useful for us in this part of the project 
+We chose Python because most of the team members are used to write code in it. Moreover, Python offers the re module (regular expressions or RegEx) which is very useful for us in this part of the project.
 
 ## User Manual:
 
-To run this project you need to have Python installed and write your code in the script.mg file.
-
-To download and install python go to:
+To download and install python3 go to:
 ```
 https://www.python.org/downloads/
 ```
-
-To run the project:
+To install the dependencies:
 ```
-python shell.py
+pip3 install -r requirements.txt
 ```
 
-The output (token stream) of our program will be seen in the terminal.
+To run the lexer:
+```
+python runner.py
+```
+Once running, the user gets prompted to enter the input file name / path:
 
-If the input file name is `<stdin>` then the user could type the code line by line in the command line (after `magnus >`).
+- If the input file name is `stdin`, our lexer switches to the shell / interactive mode. Commands can then be entered line by line in the command line (after `lexer >`).
   
-If the input file name is other than `<stdin>` then the user needs to write code in a file in the same directory as the file *shell.py*.
+- If the input file name is other than `stdin` (e.g `script.mg`), then our lexer is in script mode. It will analyze whichever commands are inside the file specified.
+The file needs to be in the same directory as the file *runner.py*.
+
 
 
 
