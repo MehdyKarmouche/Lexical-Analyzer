@@ -1,8 +1,22 @@
 import magnus
 
-while True:
-    text = input('magnus > ')
-    result, error = magnus.run('<stdin>', text)
+fileName = 'script.mg'
 
-    if error: print(error.as_string())
-    else: print(result)
+if(fileName == '<stdin>'):
+    while True:
+        text = input('magnus > ')
+
+        result, error = magnus.run(fileName, text)
+
+        if error:
+            print(error)
+        else:
+            print(result)
+else:
+    with open(fileName, "r") as f:
+        text = f.read()
+        result, error = magnus.run(fileName, text)
+        if error:
+            print(error)
+        else:
+            print(result)
