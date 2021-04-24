@@ -3,7 +3,7 @@ This is a lexical analyzer or a lexer of our language written in Python. The aim
 
 ## Implementation choices
 #### Python:
-We chose Python because most of the team members are used to write code in it. Moreover, Python offers the re module (regular expressions or RegEx) which is very useful for us in this part of the project.
+We chose Python because most of the team members are used to write code in it. Moreover, Python offers the re module (regular expressions or RegEx) which is very useful for us in this part of the project. We did not opt for java (JLex) because we don't have much experience in it and Python is much faster in development time. Python 3 was a  good option between C and Java.  
 
 ## User Manual:
 
