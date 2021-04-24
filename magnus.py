@@ -224,6 +224,9 @@ class Lexer:
             elif self.current_char == '=':
                 tokens.append(Token(TT_EQ))
                 self.getChar()
+            #elif not self.current_char.isalpha():
+                # handle <= := etc
+                # make_comp
             else:
                 pos_start = self.pos.copy()
                 char = self.current_char
