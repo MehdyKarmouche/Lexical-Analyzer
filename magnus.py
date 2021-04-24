@@ -1,3 +1,4 @@
+import re
 #######################################
 # CONSTANTS
 #######################################
@@ -79,10 +80,19 @@ TT_GT = 'GT'  # >
 TT_LTEQ = 'LTEQ'  # <=
 TT_GTEQ = 'GTEQ'  # >=
 
+
+
 # BOOLEAN OPERATORS
 TT_NOT = 'NOT'  # non
 TT_AND = 'AND'  # e
 TT_OR = 'OR'  # o
+
+# IDENTIFIER
+TT_ID ='ID'
+
+# Assignment
+TT_ASN = 'ASN'
+
 
 # RESERVED WORDS
 TT_IF = 'IF'  # se
@@ -90,6 +100,7 @@ TT_ELSE = 'ELSE'  # altro
 TT_RET = 'RET'  # return
 TT_INIT = 'INIT'  # inizio
 TT_WHILE = 'WHILE'  # mentre
+
 
 reservedWords = {"se": TT_IF,
                  "altro": TT_ELSE,
@@ -160,6 +171,8 @@ class Lexer:
                 self.getChar()
             elif self.current_char in DIGITS:
                 tokens.append(self.make_number())
+            elif self.current_char.isalpha():
+                tokens.append(self.make_word())
             elif self.current_char == '+':
                 tokens.append(Token(TT_PLUS))
                 self.getChar()
@@ -226,6 +239,33 @@ class Lexer:
             self.getChar()
 
         return Token(TT_INT, int(num_str))
+    
+    def make_word(self):
+        word = ''
+        while self.current_char != None and self.current_char !='\n' and self.current_char !=' ' and self.current_char !='\t':
+            word += self.current_char
+            self.getChar()
+        
+        # check if word exists in the map of reserved words
+        for key in reservedWords:
+            if(key == word):
+                return Token(reservedWords[key])
+        
+        # check if word is a valid identifier
+        
+        if(re.search("[a-zA-Z](_ |[0-9a-zA-Z])*", word)):
+            return Token(TT_ID)
+        
+
+        
+        # not checking if word is a string because we don't have string in our lang
+        # comment is already  handled. However, should we discard what comes after the comment sign at this stage?
+        
+        
+            
+            
+        
+        
 
     def make_identifier(self):
         pass
